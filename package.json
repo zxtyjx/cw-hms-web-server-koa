@@ -1,0 +1,22 @@
+{
+  "name": "cw-hms-web-server-koa",
+  "version": "1.0.0",
+  "description": "basice koa webserver",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs.promised": "3.0.0",
+    "js-base64": "2.4.5",
+    "koa": "2.5.1",
+    "koa-body": "4.0.1",
+    "koa-compose": "4.1.0",
+    "koa-compress": "3.0.0",
+    "koa-favicon": "2.0.1",
+    "koa-route": "3.2.0",
+    "koa-static": "4.0.3"
+  }
+}
