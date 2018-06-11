@@ -9,7 +9,9 @@ COPY . /usr/src/webapp
 
 # 安装node运行环境,并清楚缓存
 RUN echo '@3.7 http://mirrors.aliyun.com/alpine/v3.7/main' >> /etc/apk/repositories \
-&& apk update && apk upgrade \
+&& apk update \
+&& env \
+&& apk upgrade \
 && apk add --no-cache nodejs-lts \
 && npm config set registry "https://registry.npm.taobao.org" \
 && npm i \
