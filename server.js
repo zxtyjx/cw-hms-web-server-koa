@@ -22,9 +22,9 @@ app.use(koabody());
 // gzip压缩
 app.use(koacompress());
 // 静态资源
-app.use(koastatic(path.join(__dirname, '/build')));
+app.use(koastatic(`${process.env.FILEFOLDER}/build`));
 // 网站图标
-app.use(favicon(__dirname + '/build/favicon.ico'));
+app.use(favicon(`${process.env.FILEFOLDER}/build/favicon.ico`));
 // #endregion
 
 // #region 业务处理

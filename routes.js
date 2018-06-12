@@ -26,7 +26,8 @@ module.exports = (app) => {
     }
   }));
   app.use(route.get(/^((?!\.js).)+$/, async (ctx, next) => {
-    const indexHtml = process.env.VERSION ? `"./views/${process.env.VERSION}/index.html"` : "./views/index.html";
+
+    const indexHtml = process.env.VERSION ? `${process.env.FILEFOLDER}/views/${process.env.VERSION}/index.html` : `${process.env.FILEFOLDER}/views/index.html`;
     ctx.response.type = "html";
     ctx.response.body = await fs.readFile(indexHtml);
     // res.sendfile('./views/index.html');
