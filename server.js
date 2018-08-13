@@ -6,13 +6,18 @@ const koabody = require('koa-body');
 const favicon = require('koa-favicon');
 const koastatic = require('koa-static');
 const koacompress = require('koa-compress');
+const views = require('koa-views');
+const ejs = require('ejs');
 
+const packageHtml = require('./lib/file-handle');
 const normalizePort = require('./lib/normalize-port');
 const handler = require('./lib/error');
 const routes = require('./routes');
 
 const port = normalizePort(process.env.PORT || 3000);
 // const sslport = normalizePort(process.env.SSLPORT || '3050');
+
+
 
 const app = new Koa();
 
@@ -22,9 +27,13 @@ app.use(koabody());
 // gzip压缩
 app.use(koacompress());
 // 静态资源
-app.use(koastatic(`${process.env.FILEFOLDER}/build`));
+app.use(koastatic(`build`));
 // 网站图标
-app.use(favicon(`${process.env.FILEFOLDER}/build/favicon.ico`));
+app.use(favicon(`build/favicon.ico`));
+// 设置view模版
+app.use(views(__dirname + '/views', {
+  map: { html: 'ejs' }
+}));
 // #endregion
 
 // #region 业务处理
@@ -41,6 +50,16 @@ app.on('error', (err, ctx) => {
 // #endregion
 
 
-http.createServer(app.callback()).listen(port, () => {
-  console.log('HTTP Server is running port on: ', port);
-});
+
+
+async function startServer() {
+  //整理index.html
+  await packageHtml();
+  console.log('1111');
+  
+  http.createServer(app.callback()).listen(port, () => {
+    console.log('HTTP Server is running port on: ', port);
+  });
+}
+
+startServer();
