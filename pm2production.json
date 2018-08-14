@@ -1,0 +1,26 @@
+{
+  "apps": [
+    {
+      "name": "democn.jwcloudpms.com",
+      "script": "./server.js",
+      "exec_interpreter": "node",
+      "exec_mode": "fork",
+      "watch": false,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "env": {
+        "PMSAPI": "jppmsapi.jwcloudpms.com/3160001RA-1.0.0-SNAPSHOT",
+        "POSAPI": "jpposapi.jwcloudpms.com/3161001RA-1.0.0-SNAPSHOT",
+        "LPSAPI": "jplpsapi.jwcloudpms.com/3162001RA-1.0.0-SNAPSHOT",
+        "CRMAPI": "jpcrmapi.jwcloudpms.com/3163001RA-1.0.0-SNAPSHOT",
+        "CRSAPI": "jpcrsapi.jwcloudpms.com/3164001RA-1.0.0-SNAPSHOT",
+        "EBSAPI": "jpebsapi.jwcloudpms.com/3165001RA-1.0.0-SNAPSHOT",
+        "SCMAPI": "jpscmapi.jwcloudpms.com/3166001RA-1.0.0-SNAPSHOT",
+        "RPTAPI": "jprptapi.jwcloudpms.com/1160001RA-1.0.0-SNAPSHOT",
+        "IIRAPI": "jpiirapi.jwcloudpms.com/1161001RA-1.0.0-SNAPSHOT",
+        "GFCAPI": "jpgfcapi.jwcloudpms.com/3167001RA-1.0.0-SNAPSHOT",
+        "GRPAPI": "jpgrpapi.jwcloudpms.com/3168001RA-1.0.0-SNAPSHOT",
+        "PORT": 3100
+      }
+    }
+  ]
+}
