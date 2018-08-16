@@ -1,7 +1,6 @@
 const Router = require('koa-router');
 const url = require("url");
 const base64 = require("js-base64");
-const fs = require("fs.promised");
 const request = require('request');
 
 const route = new Router();

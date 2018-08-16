@@ -55,7 +55,6 @@ app.on('error', (err, ctx) => {
 async function startServer() {
   //整理index.html
   await packageHtml();
-  console.log('1111');
   
   http.createServer(app.callback()).listen(port, () => {
     console.log('HTTP Server is running port on: ', port);
