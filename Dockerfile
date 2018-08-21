@@ -10,6 +10,7 @@ MAINTAINER zhaoxiang  zxsy113@live.com
 RUN mkdir -p /usr/src/webapp
 WORKDIR /usr/src/webapp
 COPY . /usr/src/webapp
+RUN npm config set registry https://registry.npm.taobao.org && npm i
 
 EXPOSE 3000
 
