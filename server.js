@@ -27,11 +27,11 @@ app.use(koabody());
 // gzip压缩
 app.use(koacompress());
 // 静态资源
-app.use(koastatic(`build`));
+app.use(koastatic(path.join(process.env.RESDIR || __dirname, `/build`)));
 // 网站图标
 app.use(favicon(`build/favicon.ico`));
 // 设置view模版
-app.use(views(__dirname + '/views', {
+app.use(views(path.join(process.env.RESDIR || __dirname, `/views`), {
   map: { html: 'ejs' }
 }));
 // #endregion
@@ -55,7 +55,7 @@ app.on('error', (err, ctx) => {
 async function startServer() {
   //整理index.html
   await packageHtml();
-  
+
   http.createServer(app.callback()).listen(port, () => {
     console.log('HTTP Server is running port on: ', port);
   });

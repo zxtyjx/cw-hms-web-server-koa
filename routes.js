@@ -35,7 +35,7 @@ module.exports = (app) => {
       `window.__GRPAPI__ = '${process.env.GRPAPI}'`
     ]
     const apiInit = apiUrl.join(';');
-    await ctx.render('index', { apiInit });
+    await ctx.render(process.env.INDEXFILE || 'index', { apiInit });
   })
 
   app.use(route.routes());
