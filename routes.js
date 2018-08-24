@@ -13,7 +13,12 @@ module.exports = (app) => {
       let urlStr = base64.Base64.decode(_url);
       let urlObj = url.parse(urlStr);
 
-      // ctx.response.type = 'text/html';
+      if (urlObj.href.indexOf('.pdf') > 0) {
+        ctx.response.type = 'application/pdf';
+      }else{
+        ctx.response.type = 'text/html';
+      }
+
       ctx.body = ctx.req.pipe(request(urlObj.href));
 
     } catch (e) {
