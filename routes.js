@@ -15,7 +15,7 @@ module.exports = (app) => {
 
       if (urlObj.href.indexOf('.pdf') > 0) {
         ctx.response.type = 'application/pdf';
-      }else{
+      } else {
         ctx.response.type = 'text/html';
       }
 
@@ -37,7 +37,8 @@ module.exports = (app) => {
       `window.__RPTAPI__ = '${process.env.RPTAPI}'`,
       `window.__IIRAPI__ = '${process.env.IIRAPI}'`,
       `window.__GFCAPI__ = '${process.env.GFCAPI}'`,
-      `window.__GRPAPI__ = '${process.env.GRPAPI}'`
+      `window.__GRPAPI__ = '${process.env.GRPAPI}'`,
+      `window.__CRMSAPI__ = '${process.env.CRMSAPI}`
     ]
     const apiInit = apiUrl.join(';');
     await ctx.render(process.env.INDEXFILE || 'index', { apiInit });
