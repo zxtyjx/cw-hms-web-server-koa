@@ -38,7 +38,9 @@ module.exports = (app) => {
       `window.__IIRAPI__ = '${process.env.IIRAPI}'`,
       `window.__GFCAPI__ = '${process.env.GFCAPI}'`,
       `window.__GRPAPI__ = '${process.env.GRPAPI}'`,
-      `window.__CRMSAPI__ = '${process.env.CRMSAPI}'`
+      `window.__CMSAPI__ = '${process.env.CMSAPI}'`,
+      `window.__SOCKETAPI__ = '${process.env.SOCKETAPI}'`,
+      `window.__SOCKETNAMESPACE__ = '${process.env.SOCKETNAMESPACE}'`,
     ]
     const apiInit = apiUrl.join(';');
     await ctx.render(process.env.INDEXFILE || 'index', { apiInit });
