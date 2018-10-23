@@ -1,13 +1,13 @@
 const Koa = require('koa');
 const http = require('http');
 const path = require('path');
-const composes = require('koa-compose');
 const koabody = require('koa-body');
 const favicon = require('koa-favicon');
 const koastatic = require('koa-static');
 const koacompress = require('koa-compress');
 const views = require('koa-views');
-const ejs = require('ejs');
+const conditional = require('koa-conditional-get');
+const etag = require('koa-etag');
 
 const packageHtml = require('./lib/file-handle');
 const normalizePort = require('./lib/normalize-port');
@@ -22,10 +22,13 @@ const port = normalizePort(process.env.PORT || 3000);
 const app = new Koa();
 
 // #region 应用基础中间件
+// etag 增加缓存304状态码处理
+app.use(conditional());
+app.use(etag());
 // 解析body-json数据
 app.use(koabody());
 // gzip压缩
-app.use(koacompress());
+app.use(koacompress({threshold:2048}));
 // 静态资源
 app.use(koastatic(path.join(process.env.RESDIR || __dirname, `/build`)));
 // 网站图标

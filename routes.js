@@ -26,22 +26,25 @@ module.exports = (app) => {
     }
   });
   route.get(/^((?!\.js).)+$/, async (ctx, next) => {
-    const apiUrl = [
-      `window.__PMSAPI__ = '${process.env.PMSAPI}'`,
-      `window.__POSAPI__ = '${process.env.POSAPI}'`,
-      `window.__LPSAPI__ = '${process.env.LPSAPI}'`,
-      `window.__CRMAPI__ = '${process.env.CRMAPI}'`,
-      `window.__CRSAPI__ = '${process.env.CRSAPI}'`,
-      `window.__EBSAPI__ = '${process.env.EBSAPI}'`,
-      `window.__SCMAPI__ = '${process.env.SCMAPI}'`,
-      `window.__RPTAPI__ = '${process.env.RPTAPI}'`,
-      `window.__IIRAPI__ = '${process.env.IIRAPI}'`,
-      `window.__GFCAPI__ = '${process.env.GFCAPI}'`,
-      `window.__GRPAPI__ = '${process.env.GRPAPI}'`,
-      `window.__CMSAPI__ = '${process.env.CMSAPI}'`,
-      `window.__SOCKETAPI__ = '${process.env.SOCKETAPI}'`,
-      `window.__SOCKETNAMESPACE__ = '${process.env.SOCKETNAMESPACE}'`,
-    ]
+    const apiUrl = [];
+
+    process.env.PMSAPI && apiUrl.push(`window.__PMSAPI__ = '${process.env.PMSAPI}'`);
+    process.env.POSAPI && apiUrl.push(`window.__POSAPI__ = '${process.env.POSAPI}'`);
+    process.env.LPSAPI && apiUrl.push(`window.__LPSAPI__ = '${process.env.LPSAPI}'`);
+    process.env.CRMAPI && apiUrl.push(`window.__CRMAPI__ = '${process.env.CRMAPI}'`);
+    process.env.CRSAPI && apiUrl.push(`window.__CRSAPI__ = '${process.env.CRSAPI}'`);
+    process.env.EBSAPI && apiUrl.push(`window.__EBSAPI__ = '${process.env.EBSAPI}'`);
+    process.env.SCMAPI && apiUrl.push(`window.__SCMAPI__ = '${process.env.SCMAPI}'`);
+    process.env.RPTAPI && apiUrl.push(`window.__RPTAPI__ = '${process.env.RPTAPI}'`);
+    process.env.IIRAPI && apiUrl.push(`window.__IIRAPI__ = '${process.env.IIRAPI}'`);
+    process.env.GFCAPI && apiUrl.push(`window.__GFCAPI__ = '${process.env.GFCAPI}'`);
+    process.env.GRPAPI && apiUrl.push(`window.__GRPAPI__ = '${process.env.GRPAPI}'`);
+    process.env.CMSAPI && apiUrl.push(`window.__CMSAPI__ = '${process.env.CMSAPI}'`);
+    process.env.LOGAPI && apiUrl.push(`window.__LOGAPI__ = '${process.env.LOGAPI}'`);
+    process.env.SOCKETAPI && apiUrl.push(`window.__SOCKETAPI__ = '${process.env.SOCKETAPI}'`);
+    process.env.SOCKETNAMESPACE && apiUrl.push(`window.__SOCKETNAMESPACE__ = '${process.env.SOCKETNAMESPACE}'`)
+
+
     const apiInit = apiUrl.join(';');
     await ctx.render(process.env.INDEXFILE || 'index', { apiInit });
   })
