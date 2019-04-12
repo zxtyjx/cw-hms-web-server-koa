@@ -1,6 +1,6 @@
-FROM node:alpine
+FROM node:10-alpine
 
-MAINTAINER zhaoxiang  zxsy113@live.com
+MAINTAINER zhaoxiang  xiangzhao@Ctrip.com
 
 # ENV
 # RESDIR: 资源根目录
