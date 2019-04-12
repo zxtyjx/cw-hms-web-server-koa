@@ -8,6 +8,7 @@ const koacompress = require('koa-compress');
 const views = require('koa-views');
 const conditional = require('koa-conditional-get');
 const etag = require('koa-etag');
+const koaBunyanLogger = require('koa-bunyan-logger');
 
 const packageHtml = require('./lib/file-handle');
 const normalizePort = require('./lib/normalize-port');
@@ -22,6 +23,10 @@ const port = normalizePort(process.env.PORT || 3000);
 const app = new Koa();
 
 // #region 应用基础中间件
+// 添加日志处理
+app.use(koaBunyanLogger());
+app.use(koaBunyanLogger.requestIdContext());
+app.use(koaBunyanLogger.requestLogger());
 // etag 增加缓存304状态码处理
 app.use(conditional());
 app.use(etag());
