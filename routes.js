@@ -2,6 +2,8 @@ const Router = require('koa-router');
 const url = require("url");
 const base64 = require("js-base64");
 const request = require('request');
+const _ = require("lodash");
+const md5 = require('md5');
 
 const route = new Router();
 
@@ -25,6 +27,26 @@ module.exports = (app) => {
       ctx.throw(e);
     }
   });
+
+  route.get("/redirect/:lcSid/:skuCode/:md5Code", async (ctx, next) => {
+    //#region 参数校验
+    const { lcSid, skuCode, md5Code } = ctx.params
+    if (_.trim(lcSid) === "") await ctx.render(`lcSid不能为空`);
+    if (_.trim(skuCode) === "") await ctx.render(`skuCode不能为空`);
+    if (_.trim(md5Code) === "") await ctx.render(`md5Code不能为空`);
+
+    // 校验参数
+    const _md5Code = md5(`${_.trim(lcSid)}_${_.trim(skuCode)}_lc-crs`);
+    if (!_.isEqual(_md5Code, md5Code)) {
+      await ctx.render(`参数校验失败`); 
+    }
+    //#endregion
+
+    const url = `${skuCode.split('-').join('/')}/0/0`;
+
+    await ctx.redirect(url);
+  })
+
   route.get(/^((?!\.js).)+$/, async (ctx, next) => {
     const apiUrl = [];
 
